@@ -9,6 +9,11 @@ const debounce = (func, wait = 50) => {
 }
 
 const debounce = (func, wait) => {
-  let time = null;
-  return fun
+  let timeout = null;
+  return function() {
+    if (timeout !== null) {
+      clearTimeout(timeout)
+    }
+    timeout = setTimeout(func, wait)
+  }
 }
