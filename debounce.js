@@ -17,3 +17,22 @@ const debounce = (func, wait) => {
     timeout = setTimeout(func, wait)
   }
 }
+
+const debounce3 = (func, wait, immediate) => {
+  let timeout = null
+  let _debounce = function() {
+    if (immediate) {
+      if (!timeout) {
+        func.apply(this, arguments)
+      }
+      timeout = setTimeout(() => { timeout = null }, wait)
+    } else {
+      clearTimeout(timeout)
+      timeout = setTimeout(
+        () => {func.apply(this, arguments)}
+      )
+    }
+  }
+
+  return _debounce
+}
